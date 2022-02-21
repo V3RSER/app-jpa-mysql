@@ -2,19 +2,19 @@ package com.sofka.app.models;
 
 import javax.persistence.*;
 
-@Entity // Se establece que es un repositorio
-public class Role {
+@Entity // Se establece que es un modelo
+public class Project {
     @Id // Le comunica a la DB que es un identificador
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(length = 15, nullable = false, unique = true)
+    @Column(length = 25, nullable = false, unique = true)
     private String name;
 
-    public Role() {
+    public Project() {
     }
 
-    public Role(String name) {
+    public Project(String name) {
         this.name = name;
     }
 
@@ -47,7 +47,7 @@ public class Role {
         if (this == obj) return true;
         if (obj == null) return false;
         if (getClass() != obj.getClass()) return false;
-        Role other = (Role) obj;
+        Project other = (Project) obj;
         if (id == null) {
             if (other.id != null) return false;
         } else if (!id.equals(other.id)) return false;
@@ -56,6 +56,8 @@ public class Role {
 
     @Override
     public String toString() {
-        return "Role [id=" + id + ", name=" + name + "]";
+        return "Project [id=" + id + ", name=" + name + "]";
     }
+
 }
+
