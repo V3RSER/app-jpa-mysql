@@ -50,7 +50,7 @@ public class RoleController {
         }
     }
 
-    @PutMapping("/update")
+    @PutMapping("/update/{id}")
     public ResponseEntity<Role> updateRole(@PathVariable("id") long id, @RequestBody Role role) {
         try {
             return new ResponseEntity<>(this.roleService.updateRole(id, role), HttpStatus.OK);
@@ -63,7 +63,7 @@ public class RoleController {
     public ResponseEntity<String> deleteRoleByID(@PathVariable("id") long id) {
         try {
             roleService.removeRole(id);
-            return new ResponseEntity<>("Role DELETE!! ", HttpStatus.NO_CONTENT);
+            return new ResponseEntity<>("Role DELETE!! ", HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);
         }

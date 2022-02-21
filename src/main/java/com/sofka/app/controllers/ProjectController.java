@@ -50,7 +50,7 @@ public class ProjectController {
         }
     }
 
-    @PutMapping("/update")
+    @PutMapping("/update/{id}")
     public ResponseEntity<Project> updateProject(@PathVariable("id") long id, @RequestBody Project project) {
         try {
             return new ResponseEntity<>(this.projectService.updateProject(id, project), HttpStatus.OK);
@@ -63,7 +63,7 @@ public class ProjectController {
     public ResponseEntity<String> deleteProjectByID(@PathVariable("id") long id) {
         try {
             projectService.removeProject(id);
-            return new ResponseEntity<>("Project DELETE!! ", HttpStatus.NO_CONTENT);
+            return new ResponseEntity<>("Project DELETE!! ", HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);
         }

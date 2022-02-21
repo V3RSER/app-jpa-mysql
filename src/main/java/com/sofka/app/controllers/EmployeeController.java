@@ -50,7 +50,7 @@ public class EmployeeController {
         }
     }
 
-    @PutMapping("/update")
+    @PutMapping("/update/{id}")
     public ResponseEntity<Employee> updateEmployee(@PathVariable("id") long id, @RequestBody Employee employee) {
         try {
             return new ResponseEntity<>(this.employeeService.updateEmployee(id, employee), HttpStatus.OK);
@@ -63,7 +63,7 @@ public class EmployeeController {
     public ResponseEntity<String> deleteEmployeeByID(@PathVariable("id") long id) {
         try {
             employeeService.removeEmployee(id);
-            return new ResponseEntity<>("Employee DELETE!! ", HttpStatus.NO_CONTENT);
+            return new ResponseEntity<>("Employee DELETE!! ", HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);
         }
