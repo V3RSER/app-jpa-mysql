@@ -5,10 +5,10 @@ import javax.persistence.*;
 @Entity // Se establece que es un modelo
 public class Project {
     @Id // Le comunica a la DB que es un identificador
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO) // El id se va genera automáticamente y va aumentando
     private Long id;
 
-    @Column(length = 25, nullable = false, unique = true)
+    @Column(length = 25, nullable = false, unique = true) // La longitud del nombre es 25, es único y no puede ser nulo1
     private String name;
 
     public Project() {

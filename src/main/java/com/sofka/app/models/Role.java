@@ -5,10 +5,10 @@ import javax.persistence.*;
 @Entity // Se establece que es un repositorio
 public class Role {
     @Id // Le comunica a la DB que es un identificador
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO) // El id se va genera automáticamente y va aumentando
     private Long id;
 
-    @Column(length = 15, nullable = false, unique = true)
+    @Column(length = 15, nullable = false, unique = true) // La longitud del nombre es 15, es único y no puede ser nulo
     private String name;
 
     public Role() {

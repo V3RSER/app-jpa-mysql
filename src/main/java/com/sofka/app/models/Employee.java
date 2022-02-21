@@ -1,11 +1,13 @@
 package com.sofka.app.models;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity // Se establece que es un modelo
 public class Employee {
     @Id // Le comunica a la DB que es un identificador
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO) // El id se va genera automáticamente y va aumentando
     private Long id;
 
     @Column(length = 25, nullable = false)
@@ -14,16 +16,27 @@ public class Employee {
     @Column(length = 25, nullable = false)
     private String lastName;
 
-    @Column(length = 10, nullable = false, unique = true)
+    @Column(length = 10, nullable = false, unique = true) // La longitud del id es 10, es único y no puede ser nulo
     private String employeeid;
+
+    @ManyToOne(optional = false) // Tipo de relación entre empleado y rol -> muchos a uno
+    @JoinColumn(name = "id_role") // Guarda la llave foránea en id_role
+    private Role role;
+
+    @ManyToMany(cascade = CascadeType.ALL) // Tipo de relación entre empleado y proyecot -> muchos a mucho
+    @JoinTable(name = "employee_project",
+            joinColumns = {@JoinColumn(name = "employee_id")},
+            inverseJoinColumns = {@JoinColumn(name = "project_id")})
+    private List<Project> projects = new ArrayList<Project>();
 
     public Employee() {
     }
 
-    public Employee(String firstName, String lastName, String employeeid) {
+    public Employee(String firstName, String lastName, String employeeid, Role role) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.employeeid = employeeid;
+        this.role = role;
     }
 
     public Long getId() {
@@ -58,6 +71,22 @@ public class Employee {
         this.employeeid = employeeid;
     }
 
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
+    public List<Project> getProjects() {
+        return projects;
+    }
+
+    public void setProjects(List<Project> projects) {
+        this.projects = projects;
+    }
+
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -82,5 +111,4 @@ public class Employee {
     public String toString() {
         return "Employee [employeeid=" + employeeid + ", firstName=" + firstName + ", id=" + id + ", lastName=" + lastName + "]";
     }
-
 }
