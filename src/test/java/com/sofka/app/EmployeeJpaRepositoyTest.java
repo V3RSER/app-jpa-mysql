@@ -1,10 +1,9 @@
 package com.sofka.app;
 
 import com.sofka.app.models.Employee;
-import com.sofka.app.repositories.IEmployeeJpaRepository;
+import com.sofka.app.repositories.iEmployeeJpaRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.jdbc.EmbeddedDatabaseConnection;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase.Replace;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -16,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 // @AutoConfigureTestDatabase(connection = EmbeddedDatabaseConnection.H2) // Emula una DB para realizar las pruebas
 public class EmployeeJpaRepositoyTest {
     @Autowired // Instancia el repositorio
-    private IEmployeeJpaRepository repo;
+    private iEmployeeJpaRepository repo;
 
     @Test // Se establece que la clase será de pruebas
     public void saveEmployee() {
